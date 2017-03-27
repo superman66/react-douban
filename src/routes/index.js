@@ -3,13 +3,15 @@ import { Router, Route, hashHistory } from 'react-router'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
+import loggerMiddlerware from 'redux-logger'
 import App from '../components/App'
-import rootReduces from './reducers/index'
+import rootReduces from '../reducers/'
 
 let store = createStore(
   rootReduces,
   applyMiddleware(
-    thunkMiddleware
+    thunkMiddleware,
+    loggerMiddlerware
   )
 )
 export default (
