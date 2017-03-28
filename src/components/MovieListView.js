@@ -7,30 +7,32 @@ class MovieList extends Component {
     }
 
     componentWillMount() {
-        const { onFetchMovieListByType } = this.props;
-        onFetchMovieListByType();
+        const { fetchData } = this.props;
+        const url = 'https://node-douban-api.herokuapp.com/movie/in_theaters?start=0&count=9'
+        fetchData(url);
     }
-    renderMovieList(list) {
-        return list.map((item, index) =>
-            <Movie item={item} key={index} />
-        )
-    }
+    /*    renderMovieList(list) {
+            return list.map((item, index) =>
+                <Movie item={item} key={index} />
+            )
+        }*/
     render() {
-        const { isFetch, movieList } = this.props;
-        return(
-            <div>
-                loading
-            </div>
+        const { hasErrored, isLoading, items } = this.props;
+        if (hasErrored) {
+            return <h4>Soory! Errored </h4>
+        }
+        if (isLoading) {
+            return <p>loading....</p>
+        }
+        return (
+            <ul>
+                {items.map(item => (
+                    <li key={item.id}>
+                        {item.title}
+                    </li>
+                ))}
+            </ul>
         )
-        // // isFetch ? (
-        //     (<h4>loading</h4>);
-        // /*) : (
-        //         <ul>
-        //             {this.renderMovieList(movieList)}
-        //         </ul>
-        //     )*/
-
-
     }
 }
 
