@@ -9,3 +9,15 @@
 npm start
 ```
 浏览器将自动打开`localhost:3000/#/`，便可以访问应用。
+
+## React
+* React 是什么
+
+## Redux
+* Redux是什么
+* API介绍
+* 如何搭配 React 使用
+* 中间件
+* 异步数据请求
+
+## 整合 React + react-thunk + redux

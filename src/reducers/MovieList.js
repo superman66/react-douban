@@ -38,45 +38,10 @@ export default combineReducers({
     itemHasErrored,
     itemIsLoading,
     items
-})
+});
 
-/*import { combineReducers } from 'redux'
-import {
-    // FETCH_MOVIE_LIST_FAILURE,
-    FETCH_MOVIE_LIST_SUCCESS,
-    FETCH_MOVIE_LIST_REQUEST
-} from '../constant/actionTypes'
-
-const initalState = {
-    isFetch: false,
-    list: []
+// selector
+export const getState = (state) => {
+    return state.movieListReducer
 }
-
-function fetchMovieListByType(state = initalState, action) {
-    switch (action.type) {
-        case FETCH_MOVIE_LIST_REQUEST: {
-            return {
-                ...state,
-                isFetch: true
-            }
-        }
-        case FETCH_MOVIE_LIST_SUCCESS: {
-            return {
-                ...state,
-                isFetch: false,
-                list: action.list
-            }
-        }
-        default:{
-            return state
-        }
-    }
-
-}
-
-const movieListReducer = combineReducers({
-    fetchMovieListByType
-})
-
-export default movieListReducer;*/
 

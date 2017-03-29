@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Movie from './Movie'
 
 class MovieList extends Component {
     constructor(props) {
@@ -11,11 +10,6 @@ class MovieList extends Component {
         const url = 'https://node-douban-api.herokuapp.com/movie/in_theaters?start=0&count=9'
         fetchData(url);
     }
-    /*    renderMovieList(list) {
-            return list.map((item, index) =>
-                <Movie item={item} key={index} />
-            )
-        }*/
     render() {
         const { hasErrored, isLoading, items } = this.props;
         if (hasErrored) {

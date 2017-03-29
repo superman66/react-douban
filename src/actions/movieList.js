@@ -43,14 +43,14 @@ export const ITEMS_HAS_ERRORED = 'ITEMS_HAS_ERRORED';
 export const ITEMS_IS_LOADING = 'ITEMS_IS_LOADING';
 export const ITEMS_FETCH_SUCCESS = 'ITEMS_FETCH_SUCCESS';
 
-export function itemsHasErrored(bool) {
+export const itemsHasErrored = bool => {
     return {
         type: ITEMS_HAS_ERRORED,
         hasErrored: bool
     }
 }
 
-export function itemIsLoading(bool) {
+export const itemIsLoading = bool => {
     return {
         type: ITEMS_IS_LOADING,
         isLoading: bool
