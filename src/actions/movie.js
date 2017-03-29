@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch'
 import { FETCH_MOVIE } from '../constants/actionTypes'
+import * as API from '../constants/API'
 
 export const fetchRequest = (bool) => {
     return {
@@ -22,9 +23,9 @@ export const fetchSuccess = (data) => {
     }
 }
 
-export const fetchData = (url) => (dispatch) => {
+export const fetchData = (id) => (dispatch) => {
     dispatch(fetchRequest(true));
-    return fetch(url)
+    return fetch(`${API.FETCH_MOVIE_BY_ID}/${id}`)
     .then((response) => {
         dispatch(fetchRequest(false))
         return response

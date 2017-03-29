@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router'
 class MovieList extends Component {
     constructor(props) {
         super(props);
@@ -7,8 +7,7 @@ class MovieList extends Component {
 
     componentWillMount() {
         const { fetchData } = this.props;
-        const url = 'https://node-douban-api.herokuapp.com/movie/in_theaters?start=0&count=9'
-        fetchData(url);
+        fetchData();
     }
     render() {
         const { hasErrored, isLoading, items } = this.props;
@@ -21,9 +20,9 @@ class MovieList extends Component {
         return (
             <ul>
                 {items.map(item => (
-                    <li key={item.id}>
+                    <Link to={`/movie/${item.id}`} key={item.id}>
                         {item.title}
-                    </li>
+                    </Link>
                 ))}
             </ul>
         )

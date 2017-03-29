@@ -10,7 +10,6 @@ class App extends Component {
         <Header />
         <SearchBar />
          {this.props.children}
-        {/*{this.props.children | <MovieList/>}*/}
       </div>
     );
   }
