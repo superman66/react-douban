@@ -6,8 +6,8 @@ import { itemsFetchData } from '../actions/movieList'
 const mapState2Props = state => {
     return {
         items: state.items,
-        isLoading: state.isLoading,
-        hasErrored: state.hasErrored
+        isLoading: state.itemIsLoading,
+        hasErrored: state.itemHasErrored
     }
 }
 
