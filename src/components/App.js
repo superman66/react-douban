@@ -9,7 +9,8 @@ class App extends Component {
       <div>
         <Header />
         <SearchBar />
-        <MovieList/>
+         {this.props.children}
+        {/*{this.props.children | <MovieList/>}*/}
       </div>
     );
   }
