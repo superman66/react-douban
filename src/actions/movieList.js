@@ -24,12 +24,12 @@ export function itemsFetchSuccess(items) {
     }
 }
 
-export function itemsFetchData() {
+export function itemsFetchData(type = API.MOVIE_TYPE.IN_THEATERS) {
     return (dispatch) => {
         // api 请求前
         dispatch(itemIsLoading(true));
 
-        fetch(API.FETCH_MOVIE_LIST)
+        fetch(`${API.FETCH_MOVIE_LIST}/${type}?start=0&count=9`)
             .then(response => {
                 if (!response.ok) {
                     throw Error(response.statusText);

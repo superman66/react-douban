@@ -14,7 +14,7 @@ const mapState2Props = state => {
 
 const mapDispacth2Props = dispatch => {
     return {
-        fetchData: () => dispatch(itemsFetchData())
+        fetchData: (type) => dispatch(itemsFetchData(type))
     };
 }
 
