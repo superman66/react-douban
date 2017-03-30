@@ -7,7 +7,7 @@ import * as selector from '../reducers/movie'
 const mapState2Props = (state) => {
     return {
         data: selector.getState(state).fetchData,
-        looading: selector.getState(state).fetchRequest,
+        loading: selector.getState(state).fetchRequest,
         hasError: selector.getState(state).fetchError
     }
 }
