@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import Loading from './Loading'
 
-class Movie extends Component {
+class MovieView extends Component {
+
     componentWillMount() {
         const { fetchData, params } = this.props;
         fetchData(params.id);
@@ -8,16 +10,15 @@ class Movie extends Component {
     render() {
         const { data, loading, hasError } = this.props;
         if (loading) {
-            return <p>loading</p>
+            return <Loading show={loading} />
         }
-        return (
-            <div>{data}</div>
-        )
+        else {
+            return (
+                <div>{data.title}</div>
+            )
+        }
     }
 }
 
-Movie.PropTypes = {
-    item: PropTypes.object.isRequired
-}
 
-export default Movie;
+export default MovieView;

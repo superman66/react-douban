@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router'
+import Loading from './Loading'
 class MovieList extends Component {
     constructor(props) {
         super(props);
@@ -15,14 +16,16 @@ class MovieList extends Component {
             return <h4>Soory! Errored </h4>
         }
         if (isLoading) {
-            return <p>loading....</p>
+            return <Loading show={isLoading} />
         }
         return (
             <ul>
                 {items.map(item => (
-                    <Link to={`/movie/${item.id}`} key={item.id}>
-                        {item.title}
-                    </Link>
+                    <li key={item.id}>
+                        <Link to={`/movie/${item.id}`} >
+                            {item.title}
+                        </Link>
+                    </li>
                 ))}
             </ul>
         )

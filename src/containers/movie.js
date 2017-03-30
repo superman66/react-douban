@@ -2,7 +2,7 @@ import React from 'react'
 import { connect} from 'react-redux'
 import MovieView from '../components/MovieView'
 import { fetchData } from '../actions/movie'
-import * as selector from '../reducers/movieList'
+import * as selector from '../reducers/movie'
 
 const mapState2Props = (state) => {
     return {
@@ -14,8 +14,8 @@ const mapState2Props = (state) => {
 
 const mapDispatch2Props = (dispatch) => {
     return {
-        fetchData: (url) => {
-            dispatch(fetchData(url))
+        fetchData: (id) => {
+            dispatch(fetchData(id))
         }
     }
 }
