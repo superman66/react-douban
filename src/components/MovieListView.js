@@ -11,11 +11,16 @@ import { Link } from 'react-router'
 import Loading from './Loading'
 import { MOVIE_TYPE } from '../constants/API'
 
+
 const styles = {
     root: {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
+    },
+    tabs: {
+        position: 'fixed',
+        top: 0
     },
     gridList: {
         overflowY: 'auto',
@@ -27,23 +32,34 @@ class MovieListView extends Component {
         super(props);
         this.state = {
             value: 'a',
-            type: MOVIE_TYPE.IN_THEATERS
+            type: MOVIE_TYPE.IN_THEATERS,
+            items: []
         }
     }
-
-    componentWillMount() {
-        this.fetchData();
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.items.length > 0) {
+            const _items = [...nextProps.items];
+            this.setState({ items: _items });
+        }
     }
-    fetchData() {
+    componentWillMount() {
+        this.fetchData(this.state.type);
+    }
+    fetchData(type) {
         const { fetchData } = this.props;
-        fetchData(this.state.type);
+        fetchData(type);
+    }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.type !== this.state.type) {
+            this.fetchData(this.state.type);
+        }
     }
     handleChange = (type) => {
-        this.setState({ type });
-        this.fetchData();
+        this.setState({ items: [], type });
+        // this.fetchData(type);
     }
     renderList() {
-        const { items } = this.props;
+        const { items } = this.state;
         return (
             <div style={styles.root}>
                 <GridList
@@ -51,14 +67,17 @@ class MovieListView extends Component {
                     style={styles.gridList}
                 >
                     {items.map((item) =>
-                        <GridTile
-                            key={item.id}
-                            title={item.title}
-                            subtitle={<span>by <b>{item.directors[0].name}</b></span>}
-                            actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-                        >
-                            <img src={item.images.medium} />
-                        </GridTile>
+                        <Link to={`/movie/${item.id}`}>
+                            <GridTile
+                                key={item.id}
+                                title={item.title}
+                                subtitle={<span>by <b>{item.directors[0].name}</b></span>}
+                                actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+                            >
+                                <img src={item.images.medium} />
+
+                            </GridTile>
+                        </Link>
                     )}
                 </GridList>
             </div>
@@ -72,12 +91,13 @@ class MovieListView extends Component {
                 value={this.state.type}
                 onChange={this.handleChange}
             >
-                <Tab label="正在上映" value={MOVIE_TYPE.IN_THEATERS}>
+                <Tab label="正在上映" value={MOVIE_TYPE.IN_THEATERS} >
                     <Loading show={isLoading} />
-                    {this.renderList()}
+                    {!isLoading && this.renderList()}
                 </Tab>
                 <Tab label="将要上映" value={MOVIE_TYPE.COMING_SOON}>
-                   {this.renderList()}
+                    <Loading show={isLoading} />
+                    {!isLoading && this.renderList()}
                 </Tab>
             </Tabs>
 

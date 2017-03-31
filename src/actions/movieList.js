@@ -40,7 +40,6 @@ export function itemsFetchData(type = API.MOVIE_TYPE.IN_THEATERS) {
             })
             .then(response => response.json())
             .then(items => {
-                console.log(items);
                 dispatch(itemsFetchSuccess(items.subjects))})
             .catch(() => dispatch(itemsHasErrored(true)))
     }
