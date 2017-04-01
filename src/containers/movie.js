@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect} from 'react-redux'
-import MovieView from '../components/MovieView'
+import MovieView from '../components/movie/MovieView'
 import { fetchData } from '../actions/movie'
 import * as selector from '../reducers/movie'
 

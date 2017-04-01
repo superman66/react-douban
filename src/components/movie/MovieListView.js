@@ -8,8 +8,8 @@ import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import { Link } from 'react-router'
-import Loading from './Loading'
-import { MOVIE_TYPE } from '../constants/API'
+import Loading from '../Loading'
+import { MOVIE_TYPE } from '../../constants/API'
 
 
 const styles = {
@@ -25,6 +25,9 @@ const styles = {
     gridList: {
         overflowY: 'auto',
     },
+    colLIst: {
+        padding: '5px'
+    }
 };
 
 class MovieListView extends Component {
@@ -73,8 +76,7 @@ class MovieListView extends Component {
                                 subtitle={<span>by <b>{item.directors[0].name}</b></span>}
                                 actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
                             >
-                                <img src={item.images.medium} />
-
+                                <img src={item.images.large}/>
                             </GridTile>
                         </Link>
                     )}

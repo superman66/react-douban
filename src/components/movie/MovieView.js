@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import Loading from './Loading'
+import Loading from '../Loading'
 
 class MovieView extends Component {
     constructor(props) {
@@ -27,7 +27,7 @@ class MovieView extends Component {
         else {
             return (
                 <div>
-                    <br/>   
+                    <br />
                     {data.title}</div>
             )
         }

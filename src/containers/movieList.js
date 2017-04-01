@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import MovieListView from '../components/MovieListView'
+import MovieListView from '../components/movie//MovieListView'
 import { itemsFetchData } from '../actions/movieList'
 import * as selector from '../reducers/movieList'
 

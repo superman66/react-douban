@@ -26,7 +26,7 @@ export function itemIsLoading(state = false, action) {
 export function items(state = [], action) {
     switch (action.type) {
         case ITEMS_FETCH_SUCCESS: {
-            return action.items;
+            return [...action.items]
         }
         default: {
             return state;
