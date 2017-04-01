@@ -29,7 +29,7 @@ export function itemsFetchData(type = API.MOVIE_TYPE.IN_THEATERS) {
         // api 请求前
         dispatch(itemIsLoading(true));
 
-        fetch(`${API.FETCH_MOVIE_LIST}/${type}?start=0&count=9`)
+        fetch(`${API.FETCH_MOVIE_LIST}/${type}?start=0&count=10`)
             .then(response => {
                 if (!response.ok) {
                     throw Error(response.statusText);

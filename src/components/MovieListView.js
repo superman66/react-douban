@@ -36,12 +36,6 @@ class MovieListView extends Component {
             items: []
         }
     }
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.items.length > 0) {
-            const _items = [...nextProps.items];
-            this.setState({ items: _items });
-        }
-    }
     componentWillMount() {
         this.fetchData(this.state.type);
     }
@@ -49,14 +43,20 @@ class MovieListView extends Component {
         const { fetchData } = this.props;
         fetchData(type);
     }
+    componentWillUpdate(nextProps, nextState) {
+        if (nextState.items != nextProps.items) {
+            this.setState({ items: nextProps.items })
+        }
+
+    }
     componentDidUpdate(prevProps, prevState) {
         if (prevState.type !== this.state.type) {
-            this.fetchData(this.state.type);
+            // this.fetchData(this.state.type);
         }
     }
     handleChange = (type) => {
         this.setState({ items: [], type });
-        // this.fetchData(type);
+        this.fetchData(type);
     }
     renderList() {
         const { items } = this.state;
@@ -67,9 +67,8 @@ class MovieListView extends Component {
                     style={styles.gridList}
                 >
                     {items.map((item) =>
-                        <Link to={`/movie/${item.id}`}>
+                        <Link to={`/movie/${item.id}`} key={item.id}>
                             <GridTile
-                                key={item.id}
                                 title={item.title}
                                 subtitle={<span>by <b>{item.directors[0].name}</b></span>}
                                 actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
