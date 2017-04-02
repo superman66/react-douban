@@ -5,6 +5,7 @@ import {
 } from 'material-ui';
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
+import Header from '../Header'
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import { Link } from 'react-router'
@@ -64,6 +65,7 @@ class MovieListView extends Component {
     renderList() {
         const { items } = this.state;
         return (
+
             <div style={styles.root}>
                 <GridList
                     cellHeight={180}
@@ -76,7 +78,7 @@ class MovieListView extends Component {
                                 subtitle={<span>by <b>{item.directors[0].name}</b></span>}
                                 actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
                             >
-                                <img src={item.images.large}/>
+                                <img src={item.images.large} />
                             </GridTile>
                         </Link>
                     )}
@@ -88,20 +90,22 @@ class MovieListView extends Component {
         const { hasErrored, isLoading } = this.props;
 
         return (
-            <Tabs
-                value={this.state.type}
-                onChange={this.handleChange}
-            >
-                <Tab label="正在上映" value={MOVIE_TYPE.IN_THEATERS} >
-                    <Loading show={isLoading} />
-                    {!isLoading && this.renderList()}
-                </Tab>
-                <Tab label="将要上映" value={MOVIE_TYPE.COMING_SOON}>
-                    <Loading show={isLoading} />
-                    {!isLoading && this.renderList()}
-                </Tab>
-            </Tabs>
-
+            <div>
+                <Header />
+                <Tabs
+                    value={this.state.type}
+                    onChange={this.handleChange}
+                >
+                    <Tab label="正在上映" value={MOVIE_TYPE.IN_THEATERS} >
+                        <Loading show={isLoading} />
+                        {!isLoading && this.renderList()}
+                    </Tab>
+                    <Tab label="将要上映" value={MOVIE_TYPE.COMING_SOON}>
+                        <Loading show={isLoading} />
+                        {!isLoading && this.renderList()}
+                    </Tab>
+                </Tabs>
+            </div>
         )
     }
 }

@@ -8,9 +8,9 @@ import Movie from 'material-ui/svg-icons/av/movie';
 import Music from 'material-ui/svg-icons/av/library-music';
 import Info from 'material-ui/svg-icons/action/info';
 import Divider from 'material-ui/Divider';
-import Paper from 'material-ui/Paper';
 
-class SearchBar extends Component {
+const AboutLink = "/about";
+class SideBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,13 +18,16 @@ class SearchBar extends Component {
         };
     }
     componentWillUpdate(prevProps, prevState) {
-        console.log(prevProps);
         if (prevProps.open !== this.state.open) {
             this.setState({ open: prevProps.open });
         }
     }
     handleToggle = () => this.setState({ open: !this.state.open });
-    handleClose = () => this.setState({ open: false });
+    handleClose = (url) => {
+        const { router } = this.props;
+        this.setState({ open: false });
+        url && this.context.router.push('/about');
+    }
     render() {
         return (
             <div>
@@ -38,13 +41,17 @@ class SearchBar extends Component {
                         豆瓣
                     </section>
                     <MenuItem primaryText="电影" leftIcon={<Movie />} />
-                    <MenuItem primaryText="读书" leftIcon={<Book />} />
+                    <MenuItem primaryText="读书" onTouchTap={this.handleClose} leftIcon={<Book />} />
                     <MenuItem onTouchTap={this.handleClose} leftIcon={<Music />}>音乐</MenuItem>
                     <Divider />
-                    <MenuItem onTouchTap={this.handleClose} leftIcon={<Info />}>关于</MenuItem>
+                    <MenuItem onTouchTap={(AboutLink) => this.handleClose(AboutLink)} leftIcon={<Info />}>关于</MenuItem>
                 </Drawer>
-            </div>
+            </div >
         )
     }
 };
-export default SearchBar;
+
+SideBar.contextTypes = {
+    router: PropTypes.object,
+}
+export default SideBar;

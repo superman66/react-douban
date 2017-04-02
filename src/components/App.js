@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
-import Header from './Header'
+import React, { Component, PropTypes } from 'react';
 import MovieList from '../containers/movieList'
 
 class App extends Component {
+  getChildContext(){
+    return {router: this.props.router};
+  }
   render() {
     return (
       <div>
-        <Header />
          {this.props.children}
       </div>
     );
   }
+}
+
+App.childContextTypes = {
+  router: PropTypes.object,
 }
 
 export default App;
