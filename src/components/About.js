@@ -3,24 +3,28 @@ import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
 import Book from 'material-ui/svg-icons/av/library-books';
-import Movie from 'material-ui/svg-icons/av/movie';
-import Music from 'material-ui/svg-icons/av/library-music';
+import Code from 'material-ui/svg-icons/action/code';
+import Web from 'material-ui/svg-icons/av/web';
+import Email from 'material-ui/svg-icons/communication/email'
 import Info from 'material-ui/svg-icons/action/info';
 import Divider from 'material-ui/Divider';
+import Subheader from 'material-ui/Subheader';
 import GoBackBar from './GoBackBar';
 
 const Class = props => (
     <div>
-        <GoBackBar history={props.history} title='关于'/>
+        <GoBackBar goBack={props.router.goBack} title='关于'/>
         <header className="about">
             React 豆瓣
             <p className="sub-title">学习 react + react-router + redux 的一个入门项目</p>
         </header>
-        <MenuItem primaryText="电影" leftIcon={<Movie />} />
-        <MenuItem primaryText="读书" leftIcon={<Book />} />
-        <MenuItem  leftIcon={<Music />}>音乐</MenuItem>
+         <Subheader inset={true}>项目地址</Subheader>
+        <MenuItem primaryText="GitHub地址" leftIcon={<Code />} />
         <Divider />
-        <MenuItem  leftIcon={<Info />}>关于</MenuItem>
+        <Subheader inset={true}>联系我</Subheader>
+        <MenuItem  leftIcon={<Email />}>supermanchc@gmail.com</MenuItem>
+        <MenuItem  leftIcon={<Web />}>www.iamsuperman.com</MenuItem>
+        
     </div>
 )
 

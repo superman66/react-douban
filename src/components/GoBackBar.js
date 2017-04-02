@@ -1,13 +1,9 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import ArrowLeft from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import FlatButton from 'material-ui/FlatButton';
 
-function handleTouchTap(history) {
-    console.log(history);
-    alert('onTouchTap triggered on the title component');
-}
 
 const styles = {
     title: {
@@ -15,18 +11,25 @@ const styles = {
     },
 };
 
-/**
- * 带有后退按钮的Bar
- */
-const GoBackBar = (props) => {
-    const { history } = props;
-    return (
-        <AppBar
-            title={<span style={styles.title}>{props.title}</span>}
-            onLeftIconButtonTouchTap={(history) => handleTouchTap(history)}
-            iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-        />
-    );
+
+class GoBackBar extends Component {
+    constructor(props){
+        super(props);
+        this.state = {};
+    }
+    handleTouchTap = () => {
+        const { goBack } = this.props;
+        goBack();
+    }
+    render() {
+        return (
+            <AppBar
+                title={<span style={styles.title}>{this.props.title}</span>}
+                onLeftIconButtonTouchTap={this.handleTouchTap}
+                iconElementLeft={<IconButton><ArrowLeft /></IconButton>}
+            />
+        )
+    }
 }
 
 export default GoBackBar;

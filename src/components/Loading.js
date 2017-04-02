@@ -6,7 +6,7 @@ const propTypes = {
 }
 const Loading = props => (
     <div>
-        {props.show ? <img src={loadingImg} alt="" /> : ''}
+        {props.show ? <img className="loading" src={loadingImg} alt="" /> : ''}
     </div>
 )
 
