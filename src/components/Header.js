@@ -1,13 +1,6 @@
 import React, { Component } from 'react'
 import AppBar from 'material-ui/AppBar';
 import SideBar from './SideBar'
-// const propTypes = {
-//   propTypesb
-// }
-
-// const defaultProps = {
-//   defaultProps
-// }
 
 class Header extends Component {
   constructor(props) {
@@ -16,18 +9,22 @@ class Header extends Component {
       open: false
     }
   }
-  handleClick = () => {
-    this.setState({ open: true });
+  handleToggler = () => {
+    const { toggleBar } = this.props;
+    toggleBar && toggleBar(true);
+  }
+  componentWillMount() {
+    this.state.open = this.props.open;
   }
   render() {
     return (
       <div>
         <AppBar
           title="React 豆瓣"
-          onLeftIconButtonTouchTap={this.handleClick}
+          onLeftIconButtonTouchTap={this.handleToggler}
           iconClassNameRight="muidocs-icon-navigation-expand-more"
         />
-        <SideBar open={this.state.open} />
+        <SideBar  />
       </div>
     )
   }

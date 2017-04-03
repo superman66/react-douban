@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
     Tabs,
     Tab,
@@ -38,6 +38,12 @@ class MovieListView extends Component {
             value: 'a',
             type: MOVIE_TYPE.IN_THEATERS,
             items: []
+        }
+    }
+    getChildContext(){
+        return {
+            toggleBar: this.props.toggleBar,
+            open: this.props.open
         }
     }
     componentWillMount() {
@@ -91,7 +97,7 @@ class MovieListView extends Component {
 
         return (
             <div>
-                <Header />
+                <Header toggleBar={this.props.toggleBar} open={this.props.open}/>
                 <Tabs
                     value={this.state.type}
                     onChange={this.handleChange}
@@ -110,4 +116,8 @@ class MovieListView extends Component {
     }
 }
 
+MovieListView.childContextTypes = {
+    toggleBar: PropTypes.func,
+    open: PropTypes.bool
+}
 export default MovieListView;

@@ -13,20 +13,18 @@ const AboutLink = "/about";
 class SideBar extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            open: false
-        };
     }
-    componentWillUpdate(prevProps, prevState) {
-        if (prevProps.open !== this.state.open) {
-            this.setState({ open: prevProps.open });
-        }
+    componentWillMount() {
+        this.setState({ open: this.context.open });
     }
-    handleToggle = () => this.setState({ open: !this.state.open });
-    handleClose = (url) => {
+    handleToggle = (url) => {
         const { router } = this.props;
-        this.setState({ open: false });
+        this.context.toggleBar(false);
         url && this.context.router.push('/about');
+    }
+    handleClose() {
+        const { router } = this.props;
+        this.context.toggleBar(false);
     }
     render() {
         return (
@@ -34,17 +32,17 @@ class SideBar extends Component {
                 <Drawer
                     docked={false}
                     width={200}
-                    open={this.state.open}
+                    open={this.context.open}
                     onRequestChange={(open) => this.setState({ open })}
                 >
                     <section className="info">
                         豆瓣
                     </section>
                     <MenuItem primaryText="电影" leftIcon={<Movie />} />
-                    <MenuItem primaryText="读书" onTouchTap={this.handleClose} leftIcon={<Book />} />
-                    <MenuItem onTouchTap={this.handleClose} leftIcon={<Music />}>音乐</MenuItem>
+                    <MenuItem primaryText="读书" onTouchTap={this.handleToggle} leftIcon={<Book />} />
+                    <MenuItem onTouchTap={this.handleToggle} leftIcon={<Music />}>音乐</MenuItem>
                     <Divider />
-                    <MenuItem onTouchTap={(AboutLink) => this.handleClose(AboutLink)} leftIcon={<Info />}>关于</MenuItem>
+                    <MenuItem onTouchTap={(AboutLink) => this.handleToggle(AboutLink)} leftIcon={<Info />}>关于</MenuItem>
                 </Drawer>
             </div >
         )
@@ -53,5 +51,7 @@ class SideBar extends Component {
 
 SideBar.contextTypes = {
     router: PropTypes.object,
+    toggleBar: PropTypes.func,
+    open: PropTypes.bool
 }
 export default SideBar;

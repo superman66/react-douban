@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Loading from '../Loading'
+import GoBackBar from '../GoBackBar'
 
 class MovieView extends Component {
     constructor(props) {
@@ -27,8 +28,11 @@ class MovieView extends Component {
         else {
             return (
                 <div>
-                    <br />
-                    {data.title}</div>
+                    <GoBackBar goBack={this.props.router.goBack} title={data.title}/>
+                    <section>
+                        {data.title}
+                    </section>
+                </div>
             )
         }
     }
