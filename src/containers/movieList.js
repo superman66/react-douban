@@ -9,14 +9,12 @@ const mapState2Props = state => {
         items: selector.getState(state).items,
         isLoading: selector.getState(state).isLoading,
         hasErrored: selector.getState(state).hasErrored,
-        open: selector.getState(state).open
     }
 }
 
 const mapDispacth2Props = dispatch => {
     return {
         fetchData: (type) => dispatch(itemsFetchData(type)),
-        toggleBar: (bool) => dispatch(toggleSideBar(bool))
     };
 }
 

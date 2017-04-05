@@ -24,7 +24,7 @@ class Header extends Component {
           onLeftIconButtonTouchTap={this.handleToggler}
           iconClassNameRight="muidocs-icon-navigation-expand-more"
         />
-        <SideBar  />
+        <SideBar  open={this.props.open} toggleBar={this.props.toggleBar}/>
       </div>
     )
   }

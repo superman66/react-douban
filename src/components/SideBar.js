@@ -13,11 +13,11 @@ class SideBar extends Component {
         super(props);
     }
     componentWillMount() {
-        this.setState({ open: this.context.open });
+        this.setState({ open: this.props.open });
     }
     handleToggle = (url) => {
-        const { router } = this.props;
-        this.context.toggleBar(false);
+        const { router, toggleBar } = this.props;
+        toggleBar && toggleBar(false);
         url && this.context.router.push('/about');
     }
     render() {
@@ -26,15 +26,15 @@ class SideBar extends Component {
                 <Drawer
                     docked={false}
                     width={200}
-                    open={this.context.open}
+                    open={this.props.open}
                     onRequestChange={this.handleToggle}
                 >
                     <section className="info">
                         豆瓣
                     </section>
-                    <MenuItem primaryText="电影(待完成)" leftIcon={<Movie />} />
+                    <MenuItem primaryText="电影" leftIcon={<Movie />} />
                     <MenuItem primaryText="读书(待完成)" onTouchTap={this.handleToggle} leftIcon={<Book />} />
-                    <MenuItem onTouchTap={this.handleToggle} leftIcon={<Music />}>音乐</MenuItem>
+                    <MenuItem onTouchTap={this.handleToggle} leftIcon={<Music />}>音乐(待完成)</MenuItem>
                     <Divider />
                     <MenuItem onTouchTap={(AboutLink) => this.handleToggle(AboutLink)} leftIcon={<Info />}>关于</MenuItem>
                 </Drawer>
