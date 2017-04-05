@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton';
-import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
 import Book from 'material-ui/svg-icons/av/library-books';
 import Movie from 'material-ui/svg-icons/av/movie';
 import Music from 'material-ui/svg-icons/av/library-music';
@@ -22,10 +20,6 @@ class SideBar extends Component {
         this.context.toggleBar(false);
         url && this.context.router.push('/about');
     }
-    handleClose() {
-        const { router } = this.props;
-        this.context.toggleBar(false);
-    }
     render() {
         return (
             <div>
@@ -33,13 +27,13 @@ class SideBar extends Component {
                     docked={false}
                     width={200}
                     open={this.context.open}
-                    onRequestChange={(open) => this.setState({ open })}
+                    onRequestChange={this.handleToggle}
                 >
                     <section className="info">
                         豆瓣
                     </section>
-                    <MenuItem primaryText="电影" leftIcon={<Movie />} />
-                    <MenuItem primaryText="读书" onTouchTap={this.handleToggle} leftIcon={<Book />} />
+                    <MenuItem primaryText="电影(待完成)" leftIcon={<Movie />} />
+                    <MenuItem primaryText="读书(待完成)" onTouchTap={this.handleToggle} leftIcon={<Book />} />
                     <MenuItem onTouchTap={this.handleToggle} leftIcon={<Music />}>音乐</MenuItem>
                     <Divider />
                     <MenuItem onTouchTap={(AboutLink) => this.handleToggle(AboutLink)} leftIcon={<Info />}>关于</MenuItem>
