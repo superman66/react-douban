@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import AppBar from 'material-ui/AppBar';
 import SideBar from './SideBar'
 
@@ -14,7 +14,9 @@ class Header extends Component {
     toggleBar && toggleBar(true);
   }
   componentWillMount() {
-    this.state.open = this.props.open;
+    this.setState((prevState, props) => {
+      open: this.props.open
+    })
   }
   render() {
     return (
@@ -30,8 +32,10 @@ class Header extends Component {
   }
 }
 
-// Header.propTypes = propTypes
+Header.propTypes = {
+  open: PropTypes.bool.isRequired,
+  toggleBar: PropTypes.func.isRequired
+}
 
-// Class.defaultProps = defaultProps
 
 export default Header

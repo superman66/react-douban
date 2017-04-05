@@ -120,4 +120,10 @@ MovieListView.childContextTypes = {
     toggleBar: PropTypes.func,
     open: PropTypes.bool
 }
+
+MovieListView.propTypes = {
+    hasErrored: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    items: PropTypes.array.isRequired
+}
 export default MovieListView;

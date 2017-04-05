@@ -38,5 +38,9 @@ class MovieView extends Component {
     }
 }
 
-
+MovieView.propTypes = {
+    loading: PropTypes.bool.isRequired,
+    hasError: PropTypes.bool.isRequired,
+    data: PropTypes.object.isRequired
+}
 export default MovieView;
