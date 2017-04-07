@@ -31,19 +31,10 @@ class MovieView extends Component {
       </div>
     );
   }
-  renderOriginTitle() {
-
-  }
-
-  render() {
-    const { loading, hasError } = this.props;
+  renderMovieSubject() {
     const { data } = this.state;
-    console.log('data:....' + data);
-    // if (loading) {
-    //   return <Loading show={loading} />
-    // }
     return (
-      data.title ? <div>
+      <div>
         <GoBackBar goBack={this.props.router.goBack} title={data.title} />
         <div className="image-wrap" style={{ backgroundImage: 'url(' + data.images.large + ')' }}></div>
 
@@ -62,22 +53,20 @@ class MovieView extends Component {
 
         <div className="info">
           {this.renderMeta()}
-          {/*<p className="info-content"><span className="info-title">原名</span><span className="info-text">{data.aka[0]}</span></p>
-          <p className="info-content"><span className="info-title">类型</span><span className="info-text">{data.genres}</span></p>
-          <p className="info-content"><span className="info-title">年代</span><span className="info-text">{data.year}</span></p>
-          <p className="info-content"><span className="info-title">地区</span><span className="info-text">{data.countries}</span></p>
-          <p className="info-content"><span className="info-title">又名</span><span className="info-text">{data.aka}</span></p>
-          <p className="info-content"><span className="info-title">想看人数</span><span className="info-text">{data.wish_count}</span></p>
-          <p className="info-content"><span className="info-title">看过人数</span><span className="info-text">{data.collect_count}</span></p>
-          <p className="info-content"><span className="info-title">评分人数</span><span className="info-text">{data.ratings_count}</span></p>
-          <p className="info-content"><span className="info-title">短评数量</span><span className="info-text">{data.comments_count}</span></p>
-          <p className="info-content"><span className="info-title">影评数量</span><span className="info-text">{data.reviews_count}</span></p>*/}
         </div>
-
-
         <div className="summary">{data.summary}</div>
       </div>
-        : null
+    );
+  }
+
+  render() {
+    const { loading } = this.props;
+    const { data } = this.state;
+    return (
+      <div>
+        <Loading show={loading} />
+        { data.title && this.renderMovieSubject()}
+      </div>
     )
   }
 }
