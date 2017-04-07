@@ -8,7 +8,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-.info {
+.side-bar-info {
     background:rgb(0, 188, 212);
     height: 150px;
     line-height: 150px;
@@ -26,4 +26,103 @@ body {
     font-size: 16px;
     color: #999;
     margin: 0;
+}
+.image-wrap{
+  width: 100%;
+  padding-top: 80%;
+  background: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -moz-background-size: cover;
+  overflow: hidden;
+  -webkit-filter: blur(2px);
+}
+.icon-back{
+  position: absolute;
+  top: 0;
+  color: #fff;
+  text-shadow: 0px 0px 3px #ddd;
+}
+.title-border{
+  padding: 20px;
+  box-shadow: 0 0px 15px 5px #ccc;
+}
+.title-info{
+  position: relative;
+}
+.title-image{
+  width: 30%;
+  position: absolute;
+  bottom: 0;
+}
+.title-image>img{
+  width: 100%;
+  display: block;
+}
+.title-text{
+  position: relative;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 4px 0 4px 30%;
+}
+.title-text>p{
+  padding-left: 15px;
+  margin: 0;
+}
+.star{
+  display: flex;
+  justify-content: center;
+  background: #eee;
+  font-size: 42px;
+  color: #ff6f00;
+  padding: 8px 0;
+}
+.star-icon{
+  margin: 20px 0;
+  color: #ff6f00;
+}
+.info{
+  margin: 30px;
+}
+.info-content>span{
+  display: block;
+}
+.info-text{
+  color: #888;
+}
+.summary{
+  padding: 30px 20px;
+  background: #eee;
+}
+.author{
+  margin: 25px;
+}
+.author-type{
+  padding: 0px 5px;
+  margin: 0;
+}
+.author-elem{
+  padding:5px;
+}
+.author-wrap{
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+.author-image{
+  float: left;
+  width: 50%;
+  border-radius: 2px  0 0 2px;
+  overflow: hidden;
+}
+.author-padding{
+  width: 100%;
+  padding-top: 141%;
+  background-size: cover;
+  -moz-background-size: cover;
+}
+.author-name{ 
+  float: left;
+  width: 50%;
+  padding: 10px 6px;
 }

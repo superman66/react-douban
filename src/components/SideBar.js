@@ -29,7 +29,7 @@ class SideBar extends Component {
                     open={this.props.open}
                     onRequestChange={this.handleToggle}
                 >
-                    <section className="info">
+                    <section className="side-bar-info">
                         豆瓣
                     </section>
                     <MenuItem primaryText="电影" leftIcon={<Movie />} />
