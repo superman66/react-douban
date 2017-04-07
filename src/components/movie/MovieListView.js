@@ -93,7 +93,7 @@ class MovieListView extends Component {
         )
     }
     render() {
-        const { hasErrored, isLoading } = this.props;
+        const { hasError, loading } = this.props;
 
         return (
             <div>
@@ -103,12 +103,12 @@ class MovieListView extends Component {
                     onChange={this.handleChange}
                 >
                     <Tab label="正在上映" value={MOVIE_TYPE.IN_THEATERS} >
-                        <Loading show={isLoading} />
-                        {!isLoading && this.renderList()}
+                        <Loading show={loading} />
+                        {!loading && this.renderList()}
                     </Tab>
                     <Tab label="将要上映" value={MOVIE_TYPE.COMING_SOON}>
-                        <Loading show={isLoading} />
-                        {!isLoading && this.renderList()}
+                        <Loading show={loading} />
+                        {!loading && this.renderList()}
                     </Tab>
                 </Tabs>
             </div>
@@ -122,8 +122,8 @@ MovieListView.childContextTypes = {
 }
 
 MovieListView.propTypes = {
-    hasErrored: PropTypes.bool.isRequired,
-    isLoading: PropTypes.bool.isRequired,
+    hasError: PropTypes.bool.isRequired,
+    loading: PropTypes.bool.isRequired,
     items: PropTypes.array.isRequired
 }
 export default MovieListView;

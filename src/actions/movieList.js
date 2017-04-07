@@ -1,33 +1,32 @@
 import * as API from '../constants/API'
-export const ITEMS_HAS_ERRORED = 'ITEMS_HAS_ERRORED';
-export const ITEMS_IS_LOADING = 'ITEMS_IS_LOADING';
-export const ITEMS_FETCH_SUCCESS = 'ITEMS_FETCH_SUCCESS';
+import { FETCH_MOVIE_LIST } from '../constants/actionTypes';
 
-export const itemsHasErrored = bool => {
+
+export const fetchError = bool => {
     return {
-        type: ITEMS_HAS_ERRORED,
-        hasErrored: bool
+        type: FETCH_MOVIE_LIST.FAILURE,
+        hasError: bool
     }
 }
 
-export const itemIsLoading = bool => {
+export const fetchRequest = bool => {
     return {
-        type: ITEMS_IS_LOADING,
-        isLoading: bool
+        type: FETCH_MOVIE_LIST.REQUEST,
+        loading: bool
     }
 }
 
-export function itemsFetchSuccess(items) {
+export function fetchSuccess(items) {
     return {
-        type: ITEMS_FETCH_SUCCESS,
+        type: FETCH_MOVIE_LIST.SUCCESS,
         items
     }
 }
 
-export function itemsFetchData(type = API.MOVIE_TYPE.IN_THEATERS) {
+export function fetchData(type = API.MOVIE_TYPE.IN_THEATERS) {
     return (dispatch) => {
         // api 请求前
-        dispatch(itemIsLoading(true));
+        dispatch(fetchRequest(true));
 
         fetch(`${API.FETCH_MOVIE_LIST}/${type}?start=0&count=10`)
             .then(response => {
@@ -35,12 +34,12 @@ export function itemsFetchData(type = API.MOVIE_TYPE.IN_THEATERS) {
                     throw Error(response.statusText);
                 }
 
-                dispatch(itemIsLoading(false))
+                dispatch(fetchRequest(false))
                 return response;
             })
             .then(response => response.json())
             .then(items => {
-                dispatch(itemsFetchSuccess(items.subjects))})
-            .catch(() => dispatch(itemsHasErrored(true)))
+                dispatch(fetchSuccess(items.subjects))})
+            .catch(() => dispatch(fetchError(true)))
     }
 }

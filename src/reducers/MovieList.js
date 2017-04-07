@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux'
-import { ITEMS_HAS_ERRORED, ITEMS_IS_LOADING, ITEMS_FETCH_SUCCESS } from '../actions/movieList'
-export function itemHasErrored(state = false, action) {
+import { FETCH_MOVIE_LIST } from '../constants/actionTypes';
+
+export function fetchError(state = false, action) {
     switch (action.type) {
-        case ITEMS_HAS_ERRORED: {
-            return action.hasErrored;
+        case FETCH_MOVIE_LIST.FAILURE: {
+            return action.hasError;
         }
         default:
             return state;
@@ -11,10 +12,10 @@ export function itemHasErrored(state = false, action) {
 }
 
 
-export function itemIsLoading(state = false, action) {
+export function fetchRequest(state = false, action) {
     switch (action.type) {
-        case ITEMS_IS_LOADING: {
-            return action.isLoading;
+        case FETCH_MOVIE_LIST.REQUEST: {
+            return action.loading;
         }
         default: {
             return state;
@@ -22,9 +23,9 @@ export function itemIsLoading(state = false, action) {
     }
 }
 
-export function items(state = [], action) {
+export function fetchData(state = [], action) {
     switch (action.type) {
-        case ITEMS_FETCH_SUCCESS: {
+        case FETCH_MOVIE_LIST.SUCCESS: {
             return [...action.items]
         }
         default: {
@@ -34,9 +35,9 @@ export function items(state = [], action) {
 }
 
 export default combineReducers({
-    hasErrored: itemHasErrored,
-    isLoading: itemIsLoading,
-    items,
+    hasError: fetchError,
+    loading: fetchRequest,
+    items: fetchData,
 });
 
 // selector
