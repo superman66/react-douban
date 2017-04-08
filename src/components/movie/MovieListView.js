@@ -6,11 +6,11 @@ import {
 import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Header from '../../containers/header'
-import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import { Link } from 'react-router'
 import Loading from '../Loading'
 import { MOVIE_TYPE } from '../../constants/API'
+import ListItem from './ListItem'
 
 
 const styles = {
@@ -40,7 +40,7 @@ class MovieListView extends Component {
             items: []
         }
     }
-    getChildContext(){
+    getChildContext() {
         return {
             toggleBar: this.props.toggleBar,
             open: this.props.open
@@ -94,21 +94,21 @@ class MovieListView extends Component {
     }
     render() {
         const { hasError, loading } = this.props;
-
+        const { items } = this.state;
         return (
             <div>
-                <Header toggleBar={this.props.toggleBar} open={this.props.open}/>
+                <Header toggleBar={this.props.toggleBar} open={this.props.open} />
                 <Tabs
                     value={this.state.type}
                     onChange={this.handleChange}
                 >
                     <Tab label="正在上映" value={MOVIE_TYPE.IN_THEATERS} >
                         <Loading show={loading} />
-                        {!loading && this.renderList()}
+                        {!loading && <ListItem items={items}/>}
                     </Tab>
                     <Tab label="将要上映" value={MOVIE_TYPE.COMING_SOON}>
                         <Loading show={loading} />
-                        {!loading && this.renderList()}
+                        {!loading && <ListItem items={items}/>}
                     </Tab>
                 </Tabs>
             </div>
