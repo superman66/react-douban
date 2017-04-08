@@ -13,12 +13,20 @@ class SideBar extends Component {
         super(props);
     }
     componentWillMount() {
-        this.setState({ open: this.props.open });
+        this.setState({ 
+            open: this.props.open,
+            toggleBar: this.props.toggleBar
+         });
     }
-    handleToggle = (url) => {
-        const { router, toggleBar } = this.props;
+    handleClose(){
+        console.log(this.state);
+
+    }
+    handleToggle(url, e) {
+        const { toggleBar } = this.state;
         toggleBar && toggleBar(false);
-        url && this.context.router.push('/about');
+        url && this.context.router.push(url);
+        e.preventDefault();
     }
     render() {
         return (
@@ -27,16 +35,16 @@ class SideBar extends Component {
                     docked={false}
                     width={200}
                     open={this.props.open}
-                    onRequestChange={this.handleToggle}
+                    onRequestChange={(open) => this.state.toggleBar(open)}
                 >
                     <section className="side-bar-info">
                         豆瓣
                     </section>
-                    <MenuItem primaryText="电影" leftIcon={<Movie />} />
-                    <MenuItem primaryText="读书(待完成)" onTouchTap={this.handleToggle} leftIcon={<Book />} />
-                    <MenuItem onTouchTap={this.handleToggle} leftIcon={<Music />}>音乐(待完成)</MenuItem>
+                    <MenuItem  primaryText="电影" onTouchTap={this.handleToggle.bind(this, '/')} leftIcon={<Movie />} />
+                    <MenuItem primaryText="读书(敬请期待)" onTouchTap={this.handleToggle} leftIcon={<Book />} />
+                    <MenuItem primaryText="音乐(敬请期待)" onTouchTap={this.handleToggle} leftIcon={<Music />}/>
                     <Divider />
-                    <MenuItem onTouchTap={(AboutLink) => this.handleToggle(AboutLink)} leftIcon={<Info />}>关于</MenuItem>
+                    <MenuItem onTouchTap={this.handleToggle.bind(this, '/about')} primaryText="关于" leftIcon={<Info />}/>
                 </Drawer>
             </div >
         )
