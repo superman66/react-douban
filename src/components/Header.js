@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import AppBar from 'material-ui/AppBar';
 import SideBar from './SideBar'
+import IconButton from 'material-ui/IconButton';
+import Search from 'material-ui/svg-icons/action/search';
 
 class Header extends Component {
   constructor(props) {
@@ -9,14 +11,19 @@ class Header extends Component {
       open: false
     }
   }
-  handleToggler = () => {
-    const { toggleBar } = this.props;
-    toggleBar && toggleBar(true);
-  }
   componentWillMount() {
     this.setState((prevState, props) => {
       open: this.props.open
     })
+  }
+  handleToggler = () => {
+    const { toggleBar } = this.props;
+    toggleBar && toggleBar(true);
+  }
+
+  handleRightButtonTouch = () => {
+    const { router } = this.context;
+    router.push('/search');
   }
   render() {
     return (
@@ -24,9 +31,10 @@ class Header extends Component {
         <AppBar
           title="React 豆瓣"
           onLeftIconButtonTouchTap={this.handleToggler}
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
+          iconElementRight={<IconButton><Search /></IconButton>}
+          onRightIconButtonTouchTap={this.handleRightButtonTouch}
         />
-        <SideBar  open={this.props.open} toggleBar={this.props.toggleBar}/>
+        <SideBar open={this.props.open} toggleBar={this.props.toggleBar} />
       </div>
     )
   }
@@ -37,5 +45,7 @@ Header.propTypes = {
   toggleBar: PropTypes.func.isRequired
 }
 
-
+Header.contextTypes = {
+  router: PropTypes.object
+}
 export default Header
