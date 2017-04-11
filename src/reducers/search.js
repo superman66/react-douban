@@ -42,6 +42,6 @@ export default combineReducers({
 
 // selector
 export const getState = (state) => {
-    return state.searachReducer
+    return state.searchReducer
 }
 

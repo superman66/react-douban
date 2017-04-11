@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import movieReducer from './movie'
 import movieListReducer from './movieList'
-
+import searchReducer from './search'
 import { ITEMS_HAS_ERRORED, ITEMS_IS_LOADING, ITEMS_FETCH_SUCCESS } from '../actions/movieList'
 import { TOGGLE_SIDE_BAR } from '../constants/actionTypes'
 
@@ -21,4 +21,5 @@ export default combineReducers({
     open: toggleSideBar,
     movieReducer,
     movieListReducer,
+    searchReducer
 })

@@ -4,7 +4,7 @@ import App from '../components/App'
 import MovieList from '../containers/movieList'
 import Movie from '../containers/movie'
 import About from '../components/About'
-import Search from '../components/Search'
+import Search from '../containers/search'
 
 export default (
     <Route path='/' component={App} >

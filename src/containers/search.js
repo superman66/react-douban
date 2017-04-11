@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import SearchView from '../components/Search'
-import { fetchMovieById } from '../actions/movieList'
+import { searchMovie } from '../actions/search'
 import * as selector from '../reducers/movieList'
 
 const mapState2Props = state => {
@@ -14,7 +14,7 @@ const mapState2Props = state => {
 
 const mapDispacth2Props = dispatch => {
     return {
-        saerchMovie: (params) => dispatch(saerchMovie(params)),
+        searchMovie: (params) => dispatch(searchMovie(params)),
     };
 }
 
