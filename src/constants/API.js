@@ -6,3 +6,5 @@ const HOST =process.env.NODE_ENV === 'production' ? 'https://node-douban-api.her
 export const FETCH_MOVIE_LIST = `${HOST}/movie`
 
 export const FETCH_MOVIE_BY_ID = `${HOST}/movie/subject`
+
+export const SEARCH_MOVIE = `${HOST}/movie/search`

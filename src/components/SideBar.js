@@ -40,7 +40,7 @@ class SideBar extends Component {
                     <section className="side-bar-info">
                         豆瓣
                     </section>
-                    <MenuItem  primaryText="电影" onTouchTap={this.handleToggle.bind(this, '/')} leftIcon={<Movie />} />
+                    <MenuItem primaryText="电影" onTouchTap={this.handleToggle.bind(this, '/')} leftIcon={<Movie />} />
                     <MenuItem primaryText="读书(敬请期待)" onTouchTap={this.handleToggle} leftIcon={<Book />} />
                     <MenuItem primaryText="音乐(敬请期待)" onTouchTap={this.handleToggle} leftIcon={<Music />}/>
                     <Divider />

@@ -35,7 +35,6 @@ class MovieListView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 'a',
             type: MOVIE_TYPE.IN_THEATERS,
             items: []
         }
@@ -53,44 +52,14 @@ class MovieListView extends Component {
         const { fetchData } = this.props;
         fetchData(type);
     }
-    componentWillUpdate(nextProps, nextState) {
-        if (nextState.items != nextProps.items) {
+    componentWillReceiveProps(nextProps){
+        if (this.props.items != nextProps.items) {
             this.setState({ items: nextProps.items })
-        }
-
-    }
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.type !== this.state.type) {
-            // this.fetchData(this.state.type);
         }
     }
     handleChange = (type) => {
         this.setState({ items: [], type });
         this.fetchData(type);
-    }
-    renderList() {
-        const { items } = this.state;
-        return (
-
-            <div style={styles.root}>
-                <GridList
-                    cellHeight={180}
-                    style={styles.gridList}
-                >
-                    {items.map((item) =>
-                        <Link to={`/movie/${item.id}`} key={item.id}>
-                            <GridTile
-                                title={item.title}
-                                subtitle={<span>by <b>{item.directors[0].name}</b></span>}
-                                actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-                            >
-                                <img src={item.images.large} />
-                            </GridTile>
-                        </Link>
-                    )}
-                </GridList>
-            </div>
-        )
     }
     render() {
         const { hasError, loading } = this.props;

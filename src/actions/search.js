@@ -1,34 +1,39 @@
 import * as API from '../constants/API'
-import { FETCH_MOVIE_LIST } from '../constants/actionTypes';
+import { SEARCH_MOVIE } from '../constants/actionTypes';
 
 
 export const fetchError = bool => {
     return {
-        type: FETCH_MOVIE_LIST.FAILURE,
+        type: SEARCH_MOVIE.FAILURE,
         hasError: bool
     }
 }
 
 export const fetchRequest = bool => {
     return {
-        type: FETCH_MOVIE_LIST.REQUEST,
+        type: SEARCH_MOVIE.REQUEST,
         loading: bool
     }
 }
 
 export function fetchSuccess(items) {
     return {
-        type: FETCH_MOVIE_LIST.SUCCESS,
+        type: SEARCH_MOVIE.SUCCESS,
         items
     }
 }
 
-export function fetchData(type = API.MOVIE_TYPE.IN_THEATERS) {
+
+export function searchMovie(params) {
+    let query = '?';
+    for (let i in params) {
+        query += `${i}=${params[i]}&`;
+    }
     return (dispatch) => {
         // api 请求前
         dispatch(fetchRequest(true));
 
-        fetch(`${API.FETCH_MOVIE_LIST}/${type}?start=0&count=10`)
+        fetch(`${API.SEARCH_MOVIE}${query}`)
             .then(response => {
                 if (!response.ok) {
                     throw Error(response.statusText);
