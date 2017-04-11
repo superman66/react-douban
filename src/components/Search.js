@@ -98,12 +98,13 @@ class Search extends Component {
         )
     }
     render() {
-        const {items, loading } = this.props;
+        const { loading } = this.props;
+        const { items } = this.state;
         return (
             <div>
                 {this.renderSearchInput()}
                 <Loading show={loading} />
-                {!loading && <ListItem items={items}/>}
+                {items.length > 0 && <ListItem items={items} />}
             </div>
         )
     }

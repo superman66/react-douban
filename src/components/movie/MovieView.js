@@ -13,9 +13,8 @@ class MovieView extends Component {
     const { fetchData, params } = this.props;
     fetchData(params.id);
   }
-  componentWillUpdate(nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.data !== this.props.data) {
-      console.log('data: ' + nextProps.data);
       const data = { ...nextProps.data };
       this.setState({ data });
     }

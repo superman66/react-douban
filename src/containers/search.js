@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import SearchView from '../components/Search'
 import { searchMovie } from '../actions/search'
-import * as selector from '../reducers/movieList'
+import * as selector from '../reducers/search'
 
 const mapState2Props = state => {
     return {

@@ -25,7 +25,7 @@ const ListItem = props => (
                 <Link to={`/movie/${item.id}`} key={item.id}>
                     <GridTile
                         title={item.title}
-                        subtitle={<span>by <b>{item.directors[0].name}</b></span>}
+                        subtitle={<span>by <b>{item.directors.length && item.directors[0].name}</b></span>}
                         actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
                     >
                         <img src={item.images.large} />
