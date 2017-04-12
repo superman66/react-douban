@@ -71,48 +71,65 @@ let nextState = reducer(previousState, action)
 State一旦变化，Store就会调用监听函数。Listener可以通过`store.getState()`得到当前状态。
 
 # 第二部分：redux 中间件
-# React-Redux 的用法
-React-Redux将组件分为两种：
-* UI组件（纯组件）
-* 容器组件
+# 中间件与异步操作
+Redux解决了同步状态更新的问题，但是异步操作却没有解决。
+如果要 **使Reducer在异步操作结束后自动执行**，必须使用中间件。
 
-## UI组件特点
-* 只负责UI显示，不带任何逻辑
-* 无状态组件
-* 所有数据都是通过props提供
-* 不使用任何Redux的API
+## applyMiddleware
+`createStore()`方法包含了参数`applyMiddleware()`,
+它是Redux的原生方法，作用是 **将所有的中间件组成一个数组，依次执行**
 
-## 容器组件
-* 负责管理数据和业务逻辑，不负责UI显示
-* 带有内部状态
-* 使用Redux API
+## 异步操作的基本思路
+异步操作需要发出三种Action
+* 请求发起时的Action
+* 请求成功时的Action
+* 请求失败时的Action
 
-如果遇到一个组件既有UI和业务逻辑时，需要拆分成下面的结构：
-外面是一个容器组件，里面包含若干个UI组件。容器组件负责与外部的通信、传递数据给UI组件。
-UI组件则负责页面显示。
+所以流程也很清楚：
+1. 操作开始时，dispatch action，触发State更新为正在操作状态
+2. 操作结束后 再次 dispatch action,获取结果
 
-## connect
-用于从UI组件生成容器组件。
+解决方案：
+写出一个返回函数的 Action Creator，然后使用`redux-thunk`中间件改造`store.dispatch`。
 ```javascript
-import {connect} from 'react-redux'
-import {TodoList} from './TodoList'
-export default connect()(TodoList)
-```
-上面的代码就将UI组件 TodoList 转换为一个容器组件。
-每个容器组件需要定义两方面的信息：
-* 输入逻辑：外部的数据（即state对象）如何转换为 UI 组件的props
-* 输出逻辑：用户发出的动作如何变为 Action 对象，从 UI 组件传出去
+import {createStore, applyMiddleware} from 'redux'
+import thunk from 'react-thunk'
 
-完整的`connect` 方法的API如下：
-```javascript
-import {connect} from 'react-redux'
-import {TodoList} from './TodoList'
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk)
+)
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TodoList)
+export function fetchPost() {
+
+}
+export function requestPost(){}
+
+export function receivePost(){}
+
+export function handleError(err) {
+
+}
+
+export function requstAync() {
+  return function(dispatch){
+    // 请求发起时 dispatch action
+    dispatch(requestPost())
+    // 这里的fetchPost 是一个Promise
+    return fetchPost()
+    .then(response => response.json())
+    .then(json =>
+     // 请求成功时 dispatch action
+      dispatch(receivePost())
+    )
+    .catch(err =>
+     // 请求错误时 dispatch action
+      dispatch(handleError(err))
+    )
+  }
+}
 ```
+
 
 # 第三部分：redux-thunk用法
 React-Redux将组件分为两种：
