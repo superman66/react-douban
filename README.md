@@ -1,9 +1,5 @@
 # Redux and Thunk in React 教程
-通过豆瓣电影提供的 api 来学习如何在 React 中使用 Redux 和 Redux-Thunk。 
-
-查看 Demo：
-
-![](./public/qrcode.png)
+React + Reddux + React-Router 完整例子。
 ## 安装
 在项目根目录下运行 `npm install` 安装依赖
 
@@ -23,14 +19,85 @@ node index.js
 ```
 浏览器将自动打开`localhost:3000/#/`，便可以访问应用。
 
+## 演示
+[demo](http://www.iamsuperman.cn/react-douban/)(请用 chrome 的手机模式预览)
+
+**移动端请扫描下方二维码**
+
+![](./public/qrcode.png)
+
 ## 构建及发布
 ```bash
 //单独构建
 npm run build
 // 如果需要发布到GitHub pages
+// 设置 package.json 中的 "homepage": "http://superman.github.io/react-douban", 将其替换成你自己的 repository 地址即可
 npm run deploy
 ```
-## 总结
-* [redux学习笔记(一)](https://github.com/superman66/react-douban/blob/master/docs/redux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%B8%80).md)
-* [redux学习笔记(二)](https://github.com/superman66/react-douban/blob/master/docs/redux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(%E4%BA%8C).md)
-* [redux学习笔记(三)](https://github.com/superman66/react-douban/blob/master/docs/redux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89.md)
+
+## 项目分析
+React 的深入学习每个人都有各自的方式，但是对于入门而言，却是相似的。先看文档，掌握基本概念后，再通过项目驱动学习，深入理解和掌握。
+在开始这个项目之前，已经假设了你对于 React 和 redux 已经有简单的基础能力。关于 redux 部分，可以再看看下面这篇文章再回复一遍 redux 的基础、核心概念：
+* [redux学习总结笔记](./redux-summary.md) 
+
+### 项目结构
+该项目的结构如下：
+```
+.
+├── README.md
+├── build                       // 构建build生成的文件夹，用于发布
+│   ├── asset-manifest.json
+│   ├── favicon.ico
+│   ├── index.html
+│   └── static
+│       ├── css
+│       ├── js
+│       └── media
+├── node-proxy                  // node 转发 豆瓣api 服务，用于解决跨域问题
+│   └── index.js
+├── package.json
+├── public                      // 公共文件夹
+│   ├── favicon.ico
+│   ├── index.html
+│   └── qrcode.png
+├── redux-summary.md
+├── src                         // 业务代码文件夹
+│   ├── App.css
+│   ├── actions                 // actions 文件夹
+│   │   ├── header.js
+│   │   ├── movie.js
+│   │   ├── movieList.js
+│   │   └── search.js
+│   ├── components              // component ui组件集合地
+│   │   ├── About.js
+│   │   ├── App.js
+│   │   ├── GoBackBar.js
+│   │   ├── Header.js
+│   │   ├── Loading.js
+│   │   ├── Search.js
+│   │   ├── SideBar.js
+│   │   └── movie
+│   ├── constants               // 定义常量文件夹
+│   │   ├── API.js
+│   │   └── actionTypes.js
+│   ├── containers              // 容器组件集合地
+│   │   ├── header.js
+│   │   ├── movie.js
+│   │   ├── movieList.js
+│   │   └── search.js
+│   ├── index.css
+│   ├── index.js
+│   ├── loading-bars.svg
+│   ├── logo.svg
+│   ├── reducers                // reducer 集合地
+│   │   ├── index.js
+│   │   ├── movie.js                  //
+│   │   ├── movieList.js
+│   │   └── search.js
+│   ├── routes                  // 路由文件夹
+│   │   └── index.js
+│   └── store                   // reduxt store 文件夹
+│       └── configureStore.js
+└── tree.md
+```
+

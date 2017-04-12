@@ -27,6 +27,7 @@
     "test": "react-scripts test --env=jsdom",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "tree": "tree -L 3 -I 'node_modules' > tree.md"
   }
 }
