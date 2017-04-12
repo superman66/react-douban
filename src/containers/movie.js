@@ -1,7 +1,8 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import MovieView from '../components/movie/MovieView'
-import { fetchData } from '../actions/movie'
+import * as actionCreators from '../actions/movie'
 import * as selector from '../reducers/movie'
 
 const mapState2Props = (state) => {
@@ -13,10 +14,9 @@ const mapState2Props = (state) => {
 }
 
 const mapDispatch2Props = (dispatch) => {
+    const actions = bindActionCreators(actionCreators, dispatch)
     return {
-        fetchData: (id) => {
-            dispatch(fetchData(id))
-        }
+        fetchData: actions.fetchData
     }
 }
 

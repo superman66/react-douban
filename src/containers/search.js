@@ -1,7 +1,8 @@
 import React from 'react';
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import SearchView from '../components/Search'
-import { searchMovie } from '../actions/search'
+import * as actionCreators from '../actions/search'
 import * as selector from '../reducers/search'
 
 const mapState2Props = state => {
@@ -13,8 +14,9 @@ const mapState2Props = state => {
 }
 
 const mapDispacth2Props = dispatch => {
+    const actions = bindActionCreators(actionCreators, dispatch)
     return {
-        searchMovie: (params) => dispatch(searchMovie(params)),
+        searchMovie: actions.searchMovie,
     };
 }
 

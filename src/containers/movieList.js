@@ -1,7 +1,8 @@
 import React from 'react';
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import MovieListView from '../components/movie//MovieListView'
-import { fetchData } from '../actions/movieList'
+import * as actionsCreators from '../actions/movieList'
 import * as selector from '../reducers/movieList'
 
 const mapState2Props = state => {
@@ -13,8 +14,9 @@ const mapState2Props = state => {
 }
 
 const mapDispacth2Props = dispatch => {
+    const actions = bindActionCreators(actionsCreators, dispatch);
     return {
-        fetchData: (type) => dispatch(fetchData(type)),
+        fetchData: actions.fetchData,
     };
 }
 
