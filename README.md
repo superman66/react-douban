@@ -1,5 +1,5 @@
 # Redux and Thunk in React 教程
-React + Reddux + React-Router 完整例子。
+React + Redux + React-Router 完整例子。
 ## 安装
 在项目根目录下运行 `npm install` 安装依赖
 
