@@ -152,7 +152,8 @@ React-Redux将组件分为两种：
 UI组件则负责页面显示。
 
 ## connect
-用于从UI组件生成容器组件。
+用于从UI组件生成容器组件。可以这么来理解 connect 的作用。
+connect 就是将 state 上的 props（属性）和 方法（dispatch）添加到对应的 UI组件上。
 ```javascript
 import {connect} from 'react-redux'
 import {TodoList} from './TodoList'
@@ -168,6 +169,17 @@ export default connect()(TodoList)
 import {connect} from 'react-redux'
 import {TodoList} from './TodoList'
 
+function mapStateToProps(state){
+  return{
+    // do something
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return{
+    // do something
+  }
+}
 export default connect(
   mapStateToProps,
   mapDispatchToProps
