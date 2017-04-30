@@ -62,7 +62,7 @@ class MovieListView extends Component {
         this.fetchData(type);
     }
     render() {
-        const { hasError, loading } = this.props;
+        const { loading } = this.props;
         const { items } = this.state;
         return (
             <div>
@@ -91,7 +91,6 @@ MovieListView.childContextTypes = {
 }
 
 MovieListView.propTypes = {
-    hasError: PropTypes.bool.isRequired,
     loading: PropTypes.bool.isRequired,
     items: PropTypes.array.isRequired
 }

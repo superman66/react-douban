@@ -1,27 +1,9 @@
 import * as API from '../constants/API'
-import { FETCH_MOVIE_LIST } from '../constants/actionTypes';
+import { createAction } from 'redux-actions'
+import { FETCH_MOVIE_LIST } from '../constants/actionTypes'
 
-
-export const fetchError = bool => {
-    return {
-        type: FETCH_MOVIE_LIST.FAILURE,
-        hasError: bool
-    }
-}
-
-export const fetchRequest = bool => {
-    return {
-        type: FETCH_MOVIE_LIST.REQUEST,
-        loading: bool
-    }
-}
-
-export function fetchSuccess(items) {
-    return {
-        type: FETCH_MOVIE_LIST.SUCCESS,
-        items
-    }
-}
+const fetchRequest = createAction(FETCH_MOVIE_LIST.REQUEST)
+const fetchSuccess = createAction(FETCH_MOVIE_LIST.SUCCESS)
 
 export function fetchData(type = API.MOVIE_TYPE.IN_THEATERS) {
     return (dispatch) => {
@@ -40,6 +22,6 @@ export function fetchData(type = API.MOVIE_TYPE.IN_THEATERS) {
             .then(items => {
                 dispatch(fetchSuccess(items.subjects))
             })
-            .catch(() => dispatch(fetchError(true)))
+            .catch()
     }
 }

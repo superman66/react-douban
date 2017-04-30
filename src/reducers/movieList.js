@@ -1,22 +1,10 @@
 import { combineReducers } from 'redux'
 import { FETCH_MOVIE_LIST } from '../constants/actionTypes';
 
-
-export function fetchError(state = false, action) {
-    switch (action.type) {
-        case FETCH_MOVIE_LIST.FAILURE: {
-            return action.hasError;
-        }
-        default:
-            return state;
-    }
-}
-
-
 export function fetchRequest(state = false, action) {
     switch (action.type) {
         case FETCH_MOVIE_LIST.REQUEST: {
-            return action.loading;
+            return action.payload;
         }
         default: {
             return state;
@@ -27,7 +15,7 @@ export function fetchRequest(state = false, action) {
 export function fetchData(state = [], action) {
     switch (action.type) {
         case FETCH_MOVIE_LIST.SUCCESS: {
-            return [...action.items]
+            return [...action.payload]
         }
         default: {
             return state;
@@ -36,7 +24,6 @@ export function fetchData(state = [], action) {
 }
 
 export default combineReducers({
-    hasError: fetchError,
     loading: fetchRequest,
     items: fetchData,
 });

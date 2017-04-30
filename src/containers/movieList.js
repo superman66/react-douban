@@ -9,7 +9,6 @@ const mapState2Props = state => {
     return {
         items: selector.getState(state).items,
         loading: selector.getState(state).loading,
-        hasError: selector.getState(state).hasError,
     }
 }
 

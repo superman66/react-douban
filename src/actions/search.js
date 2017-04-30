@@ -1,27 +1,9 @@
 import * as API from '../constants/API'
+import { createAction } from 'redux-actions'
 import { SEARCH_MOVIE } from '../constants/actionTypes';
 
-
-export const fetchError = bool => {
-    return {
-        type: SEARCH_MOVIE.FAILURE,
-        hasError: bool
-    }
-}
-
-export const fetchRequest = bool => {
-    return {
-        type: SEARCH_MOVIE.REQUEST,
-        loading: bool
-    }
-}
-
-export function fetchSuccess(items) {
-    return {
-        type: SEARCH_MOVIE.SUCCESS,
-        items
-    }
-}
+const fetchRequest = createAction(SEARCH_MOVIE.REQUEST)
+const fetchSuccess = createAction(SEARCH_MOVIE.SUCCESS)
 
 
 export function searchMovie(params) {
@@ -45,6 +27,6 @@ export function searchMovie(params) {
             .then(items => {
                 dispatch(fetchSuccess(items.subjects))
             })
-            .catch(() => dispatch(fetchError(true)))
+            .catch()
     }
 }
