@@ -1,17 +1,6 @@
 import { combineReducers } from 'redux'
 import { FETCH_MOVIE } from '../constants/actionTypes'
 
-export const fetchRequest = (state = false, action) => {
-    switch (action.type) {
-        case FETCH_MOVIE.REQUEST: {
-            return action.payload
-        }
-        default: {
-            return state;
-        }
-    }
-}
-
 export const fetchData = (state = {}, action) => {
     switch (action.type) {
         case FETCH_MOVIE.SUCCESS: {
@@ -24,7 +13,6 @@ export const fetchData = (state = {}, action) => {
 }
 
 export default combineReducers({
-    fetchRequest,
     fetchData
 })
 

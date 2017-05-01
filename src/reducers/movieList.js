@@ -1,17 +1,6 @@
 import { combineReducers } from 'redux'
 import { FETCH_MOVIE_LIST } from '../constants/actionTypes';
 
-export function fetchRequest(state = false, action) {
-    switch (action.type) {
-        case FETCH_MOVIE_LIST.REQUEST: {
-            return action.payload;
-        }
-        default: {
-            return state;
-        }
-    }
-}
-
 export function fetchData(state = [], action) {
     switch (action.type) {
         case FETCH_MOVIE_LIST.SUCCESS: {
@@ -24,7 +13,6 @@ export function fetchData(state = [], action) {
 }
 
 export default combineReducers({
-    loading: fetchRequest,
     items: fetchData,
 });
 

@@ -8,7 +8,8 @@ import * as selector from '../reducers/movieList'
 const mapState2Props = state => {
     return {
         items: selector.getState(state).items,
-        loading: selector.getState(state).loading,
+        loading: state.commonReducer.loading,
+
     }
 }
 

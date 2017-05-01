@@ -2,11 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import HeaderView from '../components/Header'
-import * as actionCreators from '../actions/header'
+import * as actionCreators from '../actions/common'
+import * as selector from '../reducers/common'
 
 const mapState2Props = (state) => {
     return {
-       open: state.open
+       open: selector.getState(state).open
     }
 }
 
