@@ -1,8 +1,8 @@
 import * as API from '../constants/API'
 import { createAction } from 'redux-actions'
 import { SEARCH_MOVIE } from '../constants/actionTypes';
+import { loadingStatus } from './common'
 
-const fetchRequest = createAction(SEARCH_MOVIE.REQUEST)
 const fetchSuccess = createAction(SEARCH_MOVIE.SUCCESS)
 
 
@@ -13,14 +13,14 @@ export function searchMovie(params) {
     }
     return (dispatch) => {
         // api 请求前
-        dispatch(fetchRequest(true));
+        dispatch(loadingStatus(true));
 
         fetch(`${API.SEARCH_MOVIE}${query}`)
             .then(response => {
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
-                dispatch(fetchRequest(false))
+                dispatch(loadingStatus(false))
                 return response;
             })
             .then(response => response.json())
