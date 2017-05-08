@@ -20,8 +20,7 @@ const styles = {
         justifyContent: 'space-around',
     },
     tabs: {
-        position: 'fixed',
-        top: 0
+        display: 'block',
     },
     gridList: {
         overflowY: 'auto',
@@ -70,12 +69,13 @@ class MovieListView extends Component {
                 <Tabs
                     value={this.state.type}
                     onChange={this.handleChange}
+                    
                 >
-                    <Tab label="正在上映" value={MOVIE_TYPE.IN_THEATERS} >
+                    <Tab label="正在上映" value={MOVIE_TYPE.IN_THEATERS} style={styles.tabs} >
                         <Loading show={loading} />
                         {!loading && <ListItem items={items}/>}
                     </Tab>
-                    <Tab label="将要上映" value={MOVIE_TYPE.COMING_SOON}>
+                    <Tab label="将要上映" value={MOVIE_TYPE.COMING_SOON} style={styles.tabs}>
                         <Loading show={loading} />
                         {!loading && <ListItem items={items}/>}
                     </Tab>
