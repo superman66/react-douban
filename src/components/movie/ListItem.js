@@ -6,20 +6,19 @@ import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
 const styles = {
     root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
     },
-}
+    gridList: {
+        overflowY: 'auto',
+    },
+};
 const propTypes = {
     items: PropTypes.array.isRequired
 }
 
 const ListItem = props => (
     <div style={styles.root}>
-        <GridList
+        <GridList style={styles.gridList}
             cellHeight={180}
-            style={styles.gridList}
         >
             {props.items.map((item) =>
                 <Link to={`/movie/${item.id}`} key={item.id}>
