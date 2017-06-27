@@ -20,7 +20,7 @@ node index.js
 浏览器将自动打开`localhost:3000/#/`，便可以访问应用。
 
 ## 演示
-[demo](http://www.iamsuperman.cn/react-douban/)(请用 chrome 的手机模式预览)
+[demo](http://chenhuichao.com/react-douban/)(请用 chrome 的手机模式预览)
 
 **移动端请扫描下方二维码**
 
