@@ -73,11 +73,10 @@ class MovieListView extends Component {
                 >
                     <Tab label="正在上映" value={MOVIE_TYPE.IN_THEATERS} style={styles.tabs} >
                         <Loading show={loading} />
-                        {/*{ <ListItem items={items}/>}*/}
-                    </Tab>
+                        <ListItem items={items}/>
                     <Tab label="将要上映" value={MOVIE_TYPE.COMING_SOON} style={styles.tabs}>
                         <Loading show={loading} />
-                        {/*{<ListItem items={items}/>}*/}
+                        <ListItem items={items}/>
                     </Tab>
                 </Tabs>
             </div>
